@@ -73,7 +73,7 @@ def insert():
         if allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join('static', app.config['UPLOAD_FOLDER'], filename))
-            photo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            photo = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
         else:
             flash('Fayl fformati desteklenmir')
             return redirect(url_for('index'))
@@ -97,7 +97,7 @@ def insert():
 @app.route('/delete/<id>' , methods = ['GET'])#id-e gore silirem
 def delete(id):
     selectedPerson = Person.query.get(id)
-    os.remove(os.path.join('static', selectedPerson.photo))
+    # os.remove(os.path.join('static', selectedPerson.photo))
     db.session.delete(selectedPerson)
     db.session.commit()
     flash("Məlumat silindi. Təşəkkürlər!")
@@ -123,7 +123,7 @@ def edit(id):
     if file.filename != '':#file-n var
         if allowed_file(file.filename):#desteklenen fayl tipindedir
             #true gelen versiya
-             #os.remove(os.path.join('static', selectedPerson.photo))
+            #os.remove(os.path.join('static', selectedPerson.photo))
 
             filename = secure_filename(file.filename)
 
